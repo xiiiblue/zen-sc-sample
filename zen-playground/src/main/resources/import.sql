@@ -1,0 +1,1 @@
+INSERT INTO ucr_cen1.td_b_product (product_id, product_name) VALUES (99999830, '产品名称');

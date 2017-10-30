@@ -1,0 +1,14 @@
+spring:
+  application.name: zen-turbine
+server:
+  port: 8031
+security.basic.enabled: false
+turbine:
+  aggregator:
+    clusterConfig: default
+  appConfig: zen-playground
+  clusterNameExpression: new String("default")
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://zen-eureka:8761/eureka/

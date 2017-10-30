@@ -1,0 +1,3 @@
+spring.application.name: zen-playground
+spring.cloud.config.uri: http://zen-config:8888
+management.security.enabled: false

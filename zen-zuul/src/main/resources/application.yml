@@ -1,0 +1,4 @@
+server.port: 8040
+spring.application.name: zen-zuul
+eureka.client.service-url.defaultZone: http://zen-eureka:8761/eureka
+management.security.enabled: false

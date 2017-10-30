@@ -1,0 +1,82 @@
+spring.profiles.active: h2
+spring.profiles.include: enable-hystrix, enable-cors, enable-feign
+
+---
+
+# 默认
+server.port: 8080
+spring:
+  application.name: zen-playground
+  cloud.config.uri: http://zen-config:8888
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+  jpa.properties.hibernate:
+    dialect: org.hibernate.dialect.Oracle10gDialect
+    show_sql: true
+    format_sql: true
+    hbm2ddl.ddl-auto: none
+  zipkin:
+    base-url: http://zen-zipkin:9411
+  sleuthsampler:
+    percentage: 1.0
+logging:
+  file: /opt/logs/busi/playground.log
+  level:
+    root: INFO
+    com.bluexiii.zen.client: DEBUG
+    org.hibernate.type: TRACE
+    org.springframework.cache: TRACE
+    net.sf.ehcache: INFO
+    org.thymeleaf.TemplateEngine: INFO
+    org.springframework.cloud.sleuth: DEBUG
+custom:
+  baseurl: @baseurl@
+  title: @name@
+  description: @description@
+  version: @version@
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 10000
+hystrix.threadpool.default:
+  coreSize: 200
+  maxQueueSize: 300
+  queueSizeRejectionThreshold: 20
+#marathon-lb-internal.ribbon.listOfServers: marathon-lb-internal.marathon.mesos
+feign.hystrix.enabled: true
+eureka:
+  client.service-url.defaultZone: http://zen-eureka:8761/eureka
+  instance.prefer-ip-address: true
+management.security.enabled: false
+
+---
+
+# 开发环境
+spring:
+  profiles: dev
+  datasource:
+
+---
+
+# 测试环境
+spring:
+  profiles: test
+  datasource:
+
+
+---
+
+# 生产环境
+spring:
+  profiles: prod
+  datasource:
+
+---
+
+# 内嵌H2
+spring:
+  profiles: h2
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;INIT=CREATE SCHEMA IF NOT EXISTS UCR_CEN1
+    username: sa
+  jpa.properties.hibernate.dialect: org.hibernate.dialect.H2Dialect
+  jpa.hibernate.ddl-auto: create-drop
+spring.h2.console.enabled: true

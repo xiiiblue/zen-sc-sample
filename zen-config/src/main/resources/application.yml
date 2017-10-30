@@ -1,0 +1,10 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: zen-config
+  cloud.config.server.git:
+    uri: http://134.32.51.31/bluexiii/zen-sc-sample.git
+    search-paths: /zen-cfgrepo
+    username:
+    password:

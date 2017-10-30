@@ -1,0 +1,26 @@
+version: '2'
+services:
+  zen-eureka:
+    build: ./zen-eureka
+    ports:
+      - "8761:8761"
+  zen-playground:
+    build: ./zen-playground
+    ports:
+      - "8080:8080"
+  zen-config:
+    build: ./zen-config
+    ports:
+      - "8888:8888"
+  zen-zuul:
+    build: ./zen-zuul
+    ports:
+     - "8040:8040"
+  zen-turbine:
+    build: ./zen-turbine
+    ports:
+     - "8031:8031"
+  zen-zipkin:
+    build: ./zen-zipkin
+    ports:
+     - "9411:9411"
